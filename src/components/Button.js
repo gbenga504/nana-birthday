@@ -1,8 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export const Button = ({ children }) => {
+export const Button = ({ children, to, onClick }) => {
+  const Element = to ? Link : "button";
+
   return (
-    <button
+    <Element
       style={{
         background: "#fff",
         border: 0,
@@ -15,9 +18,13 @@ export const Button = ({ children }) => {
         minHeight: 30,
         minWidth: 40,
         fontSize: 18,
+        textDecoration: "none",
+        color: "#333",
       }}
+      to={to}
+      onClick={onClick}
     >
       {children}
-    </button>
+    </Element>
   );
 };
