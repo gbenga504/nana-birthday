@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { PageWrapper } from "../../../components/PageWrapper";
 
-export const Cofetti = (props) => {
+export const Cofetti = () => {
   useEffect(() => {
     if (window.confetti) {
       window.confetti.start();
