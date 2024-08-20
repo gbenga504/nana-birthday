@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Button = ({ children, to, onClick }) => {
+export const Button = ({ children, to, onClick, ...rest }) => {
   const Element = to ? Link : "button";
 
   return (

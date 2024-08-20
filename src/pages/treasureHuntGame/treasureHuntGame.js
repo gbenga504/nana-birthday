@@ -2,15 +2,10 @@ import React from "react";
 import { PageWrapper } from "../../components/PageWrapper";
 import { Button } from "../../components/Button";
 import { routes } from "../../router";
+import { useFullScreen } from "../../hooks/useFullScreen";
 
 export const TreasureHuntGame = () => {
-  function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
-  }
+  const { isFullScreen, toggleFullscreen } = useFullScreen();
 
   return (
     <PageWrapper
@@ -26,7 +21,9 @@ export const TreasureHuntGame = () => {
       <span>The Lost Manuscript 🗞</span>
       <div style={{ columnGap: 10, display: "flex" }}>
         <Button to={routes.game.storyline}>Start</Button>
-        <Button onClick={toggleFullscreen}>Fullscreen</Button>
+        <Button onClick={toggleFullscreen}>
+          {isFullScreen ? "Exit Fullscreen" : "Go Fullscreen"}
+        </Button>
       </div>
     </PageWrapper>
   );
