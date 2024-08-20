@@ -1,0 +1,54 @@
+/** 
+** ==========================
+** background
+** ==========================
+**/
+
+.background-decoration-circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 100px solid #4a148c;
+  z-index: 1;
+}
+
+.background-decoration-circle.small {
+  top: -200px;
+  left: -300px;
+  width: 400px;
+  height: 400px;
+}
+
+.background-decoration-circle.large {
+  bottom: -200px;
+  right: -400px;
+  width: 400px;
+  height: 400px;
+}
+
+/**
+**
+**/
+.container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+}
+
+.hero-image {
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+}
+
+.links {
+  margin-right: 15px;
+  margin-top: 15px;
+  color: white;
+  text-decoration: underline;
+  z-index: 1000;
+}
