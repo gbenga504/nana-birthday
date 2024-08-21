@@ -24,7 +24,7 @@ export const Home = () => {
       }}
     >
       {renderBackgroundCircles()}
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+      <div className="header">
         <Link to={routes.game.home} className="links">
           Game
         </Link>
@@ -41,33 +41,15 @@ export const Home = () => {
             flexDirection: "column",
           }}
         >
-          <p
-            style={{
-              margin: 0,
-              fontSize: 30,
-              color: "#4a148c",
-              fontWeight: "bold",
-              fontFamily: "sofia",
-            }}
-          >
-            Queen Nana! HAPPY
-          </p>
-          <p
-            style={{
-              margin: 0,
-              fontSize: 100,
-              fontWeight: "bold",
-              fontFamily: "sofia",
-            }}
-          >
-            BIRTHDAY
-          </p>
+          <img src="/images/hbd-img.jpeg" alt="nana" className="homepage-img" />
+          <p className="happy-birthday title">Queen Nana! HAPPY</p>
+          <p className="happy-birthday sub-title">BIRTHDAY</p>
           <p style={{ color: "#fff", maxWidth: "50%", textAlign: "center" }}>
-            To the most amazing woman in the world, to our friend, sister and
+            To the most amazing woman in the world , to our friend, sister and
             partner in everything, we say a happy birthday!
           </p>
         </div>
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative" }} className="img-box">
           <img src="/images/home1.png" alt="hero" className="hero-image" />
         </div>
       </div>

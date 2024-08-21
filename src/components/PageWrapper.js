@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-export const PageWrapper = ({ children, style }) => {
+export const PageWrapper = ({ children, gameAudio, style }) => {
+  const backgroundAudioRef = useRef();
+
+  useEffect(() => {
+    if (backgroundAudioRef.current && gameAudio?.isActive) {
+      backgroundAudioRef.current.volume = gameAudio.volume ?? 1;
+    }
+  }, [gameAudio]);
+
   return (
     <div
       style={{
@@ -9,6 +17,9 @@ export const PageWrapper = ({ children, style }) => {
         ...style,
       }}
     >
+      {gameAudio?.isActive && (
+        <audio src="/audio/game.mp3" autoPlay loop ref={backgroundAudioRef} />
+      )}
       {children}
     </div>
   );

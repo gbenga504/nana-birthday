@@ -52,3 +52,49 @@
   text-decoration: underline;
   z-index: 1000;
 }
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.happy-birthday.title {
+  margin: 0;
+  font-size: 30px;
+  color: #4a148c;
+  font-weight: bold;
+  font-family: "sofia";
+}
+
+.happy-birthday.sub-title {
+  margin: 0;
+  font-size: 100px;
+  font-weight: bold;
+  font-family: "sofia";
+}
+
+.homepage-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 1200px) {
+  .header {
+    display: none;
+  }
+
+  .happy-birthday.title {
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .happy-birthday.sub-title {
+    font-size: 60px;
+  }
+
+  .img-box {
+    display: none;
+  }
+}

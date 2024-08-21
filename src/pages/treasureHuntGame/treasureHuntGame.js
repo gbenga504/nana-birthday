@@ -1,6 +1,6 @@
 import React from "react";
 import { PageWrapper } from "../../components/PageWrapper";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/Button/Button";
 import { routes } from "../../router";
 import { useFullScreen } from "../../hooks/useFullScreen";
 
@@ -13,10 +13,11 @@ export const TreasureHuntGame = () => {
         alignItems: "center",
         justifyContent: "center",
         fontWeight: 700,
-        fontSize: 50,
+        fontSize: 60,
         display: "flex",
         flexDirection: "column",
       }}
+      gameAudio={{ isActive: true }}
     >
       <span>The Lost Manuscript 🗞</span>
       <div style={{ columnGap: 10, display: "flex" }}>

@@ -6,6 +6,10 @@ export const Cofetti = () => {
     if (window.confetti) {
       window.confetti.start();
     }
+
+    return () => {
+      window.confetti.stop();
+    };
   }, []);
 
   return (
@@ -16,6 +20,7 @@ export const Cofetti = () => {
         justifyContent: "center",
       }}
     >
+      <audio src="/audio/firework.mp3" autoPlay loop />
       <div
         style={{
           display: "flex",

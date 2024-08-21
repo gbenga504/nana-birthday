@@ -1,0 +1,12 @@
+.disappearing-text {
+  animation: appear 3s;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

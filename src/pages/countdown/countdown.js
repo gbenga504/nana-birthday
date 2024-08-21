@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageWrapper } from "../../components/PageWrapper";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input";
 import { useFullScreen } from "../../hooks/useFullScreen";
 import { routes } from "../../router";
@@ -9,6 +9,7 @@ import { routes } from "../../router";
 export const Countdown = () => {
   const { isFullScreen, toggleFullscreen } = useFullScreen();
   const navigate = useNavigate();
+  const clockRef = useRef();
 
   const [timer, setTimer] = useState({
     mins: undefined,
@@ -22,6 +23,10 @@ export const Countdown = () => {
     if (window.confetti) {
       window.confetti.start(undefined, 2, 6);
     }
+
+    return () => {
+      window.confetti.stop();
+    };
   }, []);
 
   const scheduleTimer = () => {
@@ -69,12 +74,15 @@ export const Countdown = () => {
     handleChangeTimer({ isTimerActive: true });
 
     scheduleTimer();
+    clockRef.current.play();
   };
 
   const handleStopTimer = () => {
     handleChangeTimer({ isTimerActive: false });
 
     clearInterval(timerRef.current);
+    clockRef.current.pause();
+    clockRef.current.currentTime = 0;
   };
 
   return (
@@ -87,6 +95,7 @@ export const Countdown = () => {
         flexDirection: "column",
       }}
     >
+      <audio src="/audio/clock.mp3" ref={clockRef} loop />
       <div style={{ maxWidth: 700 }}>
         <div
           style={{
