@@ -3,8 +3,11 @@ import { PageWrapper } from "../../components/PageWrapper";
 import "./home.css";
 import { Link } from "react-router-dom";
 import { routes } from "../../router";
+import { useFullScreen } from "../../hooks/useFullScreen";
 
 export const Home = () => {
+  const { isFullScreen, toggleFullscreen } = useFullScreen();
+
   const renderBackgroundCircles = () => {
     return (
       <React.Fragment>
@@ -36,6 +39,9 @@ export const Home = () => {
           className="links"
         >
           Timer
+        </Link>
+        <Link onClick={toggleFullscreen} className="links">
+          {isFullScreen ? "Exit Fullcreen" : "Go Fullscreen"}
         </Link>
       </div>
       <div className="container">
