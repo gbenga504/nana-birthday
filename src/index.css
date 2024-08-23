@@ -9,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: black;
   color: #fff;
+  overflow: hidden;
 }
 
 div#root {
