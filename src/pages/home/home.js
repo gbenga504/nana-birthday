@@ -31,6 +31,12 @@ export const Home = () => {
         <Link to={routes.countdown.home} className="links">
           Countdown
         </Link>
+        <Link
+          to={`${routes.countdown.home}?time-type=regular`}
+          className="links"
+        >
+          Timer
+        </Link>
       </div>
       <div className="container">
         <div

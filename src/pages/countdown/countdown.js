@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { PageWrapper } from "../../components/PageWrapper";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input";
@@ -10,6 +10,7 @@ export const Countdown = () => {
   const { isFullScreen, toggleFullscreen } = useFullScreen();
   const navigate = useNavigate();
   const clockRef = useRef();
+  const [searchParams] = useSearchParams();
 
   const [timer, setTimer] = useState({
     mins: undefined,
@@ -29,6 +30,24 @@ export const Countdown = () => {
     };
   }, []);
 
+  const stopClockSound = () => {
+    clockRef.current.pause();
+    clockRef.current.currentTime = 0;
+  };
+
+  const handleActionOnTimerEnd = () => {
+    const timerType = searchParams.get("time-type");
+
+    if (timerType === "regular") {
+      handleChangeTimer({ secs: 0, mins: 0 });
+      stopClockSound();
+
+      return;
+    }
+
+    navigate(routes.countdown.cofetti);
+  };
+
   const scheduleTimer = () => {
     timerRef.current = setInterval(function () {
       // We do this here so we get the latest state changes
@@ -39,7 +58,7 @@ export const Countdown = () => {
         if (secs === 1 && mins === 0) {
           clearInterval(timerRef.current);
 
-          navigate(routes.countdown.cofetti);
+          handleActionOnTimerEnd();
         }
 
         if (secs === 0) {
@@ -57,6 +76,29 @@ export const Countdown = () => {
     }
 
     return time;
+  };
+
+  const getInputTextColor = () => {
+    const { mins, secs, isTimerActive } = timer;
+
+    if (!isTimerActive || mins > 0) {
+      return;
+    }
+
+    switch (Math.ceil(secs / 10)) {
+      case 3:
+        // From 21 to 30 secs
+        return "#FFCDD2";
+      case 2:
+        // From 11 to 20 secs
+        return "#E57373";
+      case 1:
+      case 0:
+        // From 0 to 10 secs
+        return "#B71C1C";
+      default:
+        return undefined;
+    }
   };
 
   const handleChangeTimer = (changeset) => {
@@ -81,8 +123,7 @@ export const Countdown = () => {
     handleChangeTimer({ isTimerActive: false });
 
     clearInterval(timerRef.current);
-    clockRef.current.pause();
-    clockRef.current.currentTime = 0;
+    stopClockSound();
   };
 
   return (
@@ -110,12 +151,14 @@ export const Countdown = () => {
               placeholder="00"
               value={formatTime(timer.mins)}
               onChange={(e) => handleChangeTimer({ mins: e.target.value })}
+              textColor={getInputTextColor()}
             />
             <span style={{ fontWeight: "bold", fontSize: 200 }}>:</span>
             <Input
               placeholder="00"
               value={formatTime(timer.secs)}
               onChange={(e) => handleChangeTimer({ secs: e.target.value })}
+              textColor={getInputTextColor()}
             />
           </div>
           <div style={{ marginTop: 20, columnGap: 10, display: "flex" }}>
