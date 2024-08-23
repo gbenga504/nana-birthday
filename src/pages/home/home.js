@@ -48,7 +48,9 @@ export const Home = () => {
           }}
         >
           <img src="/images/hbd-img.jpeg" alt="nana" className="homepage-img" />
-          <p className="happy-birthday title">Queen Nana! HAPPY</p>
+          <p className="happy-birthday title">
+            <span style={{ color: "#fff" }}>Queen</span> Nana! HAPPY
+          </p>
           <p className="happy-birthday sub-title">BIRTHDAY</p>
           <p style={{ color: "#fff", maxWidth: "50%", textAlign: "center" }}>
             To the most amazing woman in the world , to our friend, sister and
