@@ -10,6 +10,9 @@ export const Countdown = () => {
   const { isFullScreen, toggleFullscreen } = useFullScreen();
   const navigate = useNavigate();
   const clockRef = useRef();
+  const timerOverSoundRef = useRef();
+  const timerRef = useRef(null);
+
   const [searchParams] = useSearchParams();
 
   const [timer, setTimer] = useState({
@@ -17,8 +20,6 @@ export const Countdown = () => {
     secs: undefined,
     isTimerActive: false,
   });
-
-  const timerRef = useRef(null);
 
   useEffect(() => {
     if (window.confetti) {
@@ -41,6 +42,8 @@ export const Countdown = () => {
     if (timerType === "regular") {
       handleChangeTimer({ secs: 0, mins: 0 });
       stopClockSound();
+
+      timerOverSoundRef.current.play();
 
       return;
     }
@@ -136,6 +139,7 @@ export const Countdown = () => {
         flexDirection: "column",
       }}
     >
+      <audio src="/audio/timerOverSound.mp3" ref={timerOverSoundRef} />
       <audio src="/audio/clock.mp3" ref={clockRef} loop />
       <div style={{ maxWidth: 700 }}>
         <div
